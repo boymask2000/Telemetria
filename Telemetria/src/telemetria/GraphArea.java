@@ -13,6 +13,10 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
+import common.DataItem;
+import common.DataLimits;
+import common.Point;
+
 public class GraphArea extends Canvas {
 
 	private List<DataItem> firstData = new ArrayList<>();

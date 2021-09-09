@@ -31,6 +31,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tracker;
 
+import common.DataItem;
+import common.DataLimits;
+import common.Point;
+
 public class Telemetria {
 	private Telemetria tele;
 	private static final String DIR = "C:\\Users\\GiovanniPosabella\\Desktop\\CICCA";
@@ -63,9 +67,9 @@ public class Telemetria {
 	public final static int WIDTH = (int) (HEIGHT * WINFACT);
 	public static final double RATIOSELECTOR = HEIGHT / SIZESELECTOR;
 
-	public static void main(String[] args) {
-		new Telemetria();
-	}
+//	public static void main(String[] args) {
+//		new Telemetria();
+//	}
 
 	public Telemetria() {
 		this.tele = this;

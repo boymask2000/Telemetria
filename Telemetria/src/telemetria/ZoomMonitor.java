@@ -12,6 +12,10 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
+import common.DataItem;
+import common.DataLimits;
+import common.Point;
+
 public class ZoomMonitor extends Canvas {
 
 	private static final int ZOOMFACTOR = 5;

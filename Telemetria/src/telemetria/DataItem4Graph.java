@@ -3,6 +3,10 @@ package telemetria;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 
+import common.DataItem;
+import common.DataLimits;
+import common.Point;
+
 public class DataItem4Graph {
 	private int time;
 	private int km;

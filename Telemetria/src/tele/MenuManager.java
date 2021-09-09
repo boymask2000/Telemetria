@@ -52,6 +52,7 @@ public class MenuManager {
 			public void widgetSelected(SelectionEvent arg0) {
 				String file1 = getFile();
 				main.getDataLoader().loadData1(file1, 0, -1);
+				main.refreshGeometria();
 			}
 
 			@Override
@@ -66,7 +67,7 @@ public class MenuManager {
 			public void widgetSelected(SelectionEvent arg0) {
 				String file2 = getFile();
 				main.getDataLoader().loadData2(file2, 0, -1);
-
+				main.refreshGeometria();
 			}
 
 			@Override
@@ -130,7 +131,7 @@ public class MenuManager {
 		String[] filterExt = { "*.csv" };
 		fd.setFilterExtensions(filterExt);
 		String selected = fd.open();
-		System.out.println(selected);
+	
 		return selected;
 	}
 

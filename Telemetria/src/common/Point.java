@@ -1,4 +1,4 @@
-package telemetria;
+package common;
 
 public class Point {
 	private int x;
@@ -20,6 +20,19 @@ public class Point {
 
 	public int getY() {
 		return y;
+	}
+
+	public static Point copy(Point s) {
+		return new Point(s.getX(), s.getY() );
+	
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	
