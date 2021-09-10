@@ -117,9 +117,9 @@ public class Tele {
 
 		initMouseMoveInfo();
 
-	//	dataLoader.loadData1(DIR + "/" + "pr01.csv", 0, -1);
-	//	dataLoader.loadData2(DIR + "/" + "pr01_m.csv", 0, -1);
-	
+		// dataLoader.loadData1(DIR + "/" + "pr01.csv", 0, -1);
+		// dataLoader.loadData2(DIR + "/" + "pr01_m.csv", 0, -1);
+
 		matrix = new Matrix(this);
 
 		shell.layout(true, true);
@@ -142,7 +142,7 @@ public class Tele {
 	public void drawData(GC gc, List<DataItem> data, Color col, Canvas canvas) {
 		if (data.size() == 0)
 			return;
-	//	dataLoader.dumpData1();
+		// dataLoader.dumpData1();
 		// Point prec = new Point(0, 0);
 		DataItem first = data.get(0);
 		Point prec = matrix.dataToScreen(first);
@@ -199,12 +199,13 @@ public class Tele {
 
 				}
 				double asc;
-				if(dataLoader.getFirstData().size()>0) {
-				if (currentDataType == DataType.KM)
-					asc = dataLoader.getFirstData().get(moveIndex).getKm();
-				else
-					asc = dataLoader.getFirstData().get(moveIndex).getTime();
-				dataType.setText("" + asc);}
+				if (dataLoader.getFirstData().size() > 0) {
+					if (currentDataType == DataType.KM)
+						asc = dataLoader.getFirstData().get(moveIndex).getKm();
+					else
+						asc = dataLoader.getFirstData().get(moveIndex).getTime();
+					dataType.setText("" + asc);
+				}
 			}
 
 			private String trimTime(String s) {
@@ -327,7 +328,7 @@ public class Tele {
 				dataLoader.shiftData(s);
 				shell.redraw();
 				canvas.redraw();
-				if (zoomShell != null && !zoomShell.isDisposed()) 
+				if (zoomShell != null && !zoomShell.isDisposed())
 					zoomShell.refreshGraph();
 			}
 
@@ -336,7 +337,7 @@ public class Tele {
 		left.setText("<");
 		Button right = new Button(comp, SWT.PUSH);
 		right.setText(">");
-		
+
 		left.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -345,8 +346,8 @@ public class Tele {
 				dataLoader.shiftData(1);
 				shell.redraw();
 				canvas.redraw();
-				if (zoomShell != null && !zoomShell.isDisposed()) 
-				zoomShell.refreshGraph();
+				if (zoomShell != null && !zoomShell.isDisposed())
+					zoomShell.refreshGraph();
 			}
 
 		});
@@ -358,8 +359,8 @@ public class Tele {
 				dataLoader.shiftData(-1);
 				shell.redraw();
 				canvas.redraw();
-				if (zoomShell != null && !zoomShell.isDisposed()) 
-				zoomShell.refreshGraph();
+				if (zoomShell != null && !zoomShell.isDisposed())
+					zoomShell.refreshGraph();
 			}
 
 		});
@@ -414,7 +415,7 @@ public class Tele {
 		b_time.setText("Time");
 		Button b_km = new Button(group1, SWT.RADIO);
 		b_km.setText("m");
-b_time.setSelection(true);
+		b_time.setSelection(true);
 		b_time.addSelectionListener(new SelectionListener() {
 
 			@Override

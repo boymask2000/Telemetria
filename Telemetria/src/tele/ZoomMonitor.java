@@ -40,7 +40,6 @@ public class ZoomMonitor extends Canvas {
 	private Point p100;
 	private SpaceAllocator spaceAllocator;
 
-	
 	private boolean showMax = false;
 	private boolean showMin = false;
 	private boolean showAscisse = false;
@@ -107,6 +106,7 @@ public class ZoomMonitor extends Canvas {
 //			minMax(gc, data, moveIndex, lastIndex);
 		this.spaceAllocator = new SpaceAllocator();
 		int counter = 0;
+	
 		for (int i = moveIndex; i < data.size() && i < lastIndex; i++, counter++) {
 			DataItem d = data.get(i);
 
@@ -126,6 +126,7 @@ public class ZoomMonitor extends Canvas {
 				drawUnits(gc, d, p);
 
 		}
+
 		if (moveIndex >= data.size())
 			return;
 		if (showOrdinate) {
@@ -148,7 +149,7 @@ public class ZoomMonitor extends Canvas {
 		}
 	}
 
-	private void showMaxMin(GC gc, DataItem d, int n) {
+	private boolean showMaxMin(GC gc, DataItem d, int n) {
 		if ((showMax && d.isValoreMax()) || (showMin && d.isValoreMin())) {
 			double val = d.getTime();
 			if (dataType == DataType.KM)
@@ -162,7 +163,6 @@ public class ZoomMonitor extends Canvas {
 
 			gc.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_BLACK));
 			gc.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
-			gc.drawLine(pMin.getX(), pMin.getY(), delta, pMin.getY());
 
 			if (OPT == 1) {
 				gc.drawString(trimVal("" + d.getSpeed()), delta, pMin.getY());
@@ -171,25 +171,27 @@ public class ZoomMonitor extends Canvas {
 
 				gc.drawString("" + val, pMin.getX(), height - yOrigin + 50 + dd);
 			} else {
-				Point rr = drawStringOnFreeSpace(gc, "(" + val + "," + trimVal("" + d.getSpeed()) + ")", delta,
-						pMin.getY());
+				String str = "(" + val + ",  " + trimVal("" + d.getSpeed()) + ")";
+				Point rr = drawStringOnFreeSpace(gc, str, delta, pMin.getY());
 				// gc.drawString("(" +val+","+ trimVal(""+d.getSpeed())+")", delta,
 				// pMin.getY());
 				gc.drawLine(pMin.getX(), pMin.getY(), rr.getX(), rr.getY());
 			}
+			return true;
 		}
+		return false;
 	}
 
 	private Point drawStringOnFreeSpace(GC gc, String s, int x, int y) {
 		gc.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_BLACK));
 		gc.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
 		Point p = new Point(x, y);
-		Point pOk = spaceAllocator.calcPosition(p);
+		Point pOk = spaceAllocator.calcPosition(gc, s, p);
 		gc.drawString(s, pOk.getX(), pOk.getY());
 		return pOk;
 	}
 
-	private String trimVal(String s) {
+	private static String trimVal(String s) {
 		int index = s.indexOf(".");
 		if (index == -1)
 			return s;
@@ -242,13 +244,11 @@ public class ZoomMonitor extends Canvas {
 		getParent().layout();
 		redraw();
 	}
-	
+
 	public void refreshGraph() {
 		getParent().layout();
 		redraw();
 	}
-
-
 
 	public SpaceAllocator getSpaceAllocator() {
 		return spaceAllocator;
@@ -273,7 +273,8 @@ public class ZoomMonitor extends Canvas {
 	}
 
 	public void setShowMin(boolean showMin) {
-		this.showMin = showMin;getParent().layout();
+		this.showMin = showMin;
+		getParent().layout();
 		redraw();
 	}
 
@@ -282,7 +283,8 @@ public class ZoomMonitor extends Canvas {
 	}
 
 	public void setShowOrdinate(boolean showOrdinate) {
-		this.showOrdinate = showOrdinate;getParent().layout();
+		this.showOrdinate = showOrdinate;
+		getParent().layout();
 		redraw();
 	}
 
@@ -291,7 +293,8 @@ public class ZoomMonitor extends Canvas {
 	}
 
 	public void setShowAscisse(boolean showAscisse) {
-		this.showAscisse = showAscisse;getParent().layout();
+		this.showAscisse = showAscisse;
+		getParent().layout();
 		redraw();
 	}
 
