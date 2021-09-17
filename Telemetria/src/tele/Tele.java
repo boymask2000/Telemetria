@@ -31,9 +31,7 @@ import org.eclipse.swt.widgets.Text;
 import common.DataItem;
 import common.DataLimits;
 import common.Point;
-import telemetria.DataItem4Graph;
 import telemetria.DataType;
-import telemetria.Telemetria;
 
 public class Tele {
 

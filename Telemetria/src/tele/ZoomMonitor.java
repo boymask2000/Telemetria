@@ -105,6 +105,10 @@ public class ZoomMonitor extends Canvas {
 //		if (showMaxMin)
 //			minMax(gc, data, moveIndex, lastIndex);
 		this.spaceAllocator = new SpaceAllocator();
+		
+		drawLabels(gc, data,n);
+		
+		
 		int counter = 0;
 	
 		for (int i = moveIndex; i < data.size() && i < lastIndex; i++, counter++) {
@@ -118,7 +122,7 @@ public class ZoomMonitor extends Canvas {
 			gc.setBackground(col);
 			matrix.drawLineScreen(gc, p, prec);
 
-			showMaxMin(gc, d, n);
+	//		showMaxMin(gc, d, n);
 
 			prec = p;
 
@@ -180,6 +184,13 @@ public class ZoomMonitor extends Canvas {
 			return true;
 		}
 		return false;
+	}
+	private void drawLabels(GC gc, List<DataItem> data,int n) {
+		for (int i = 0; i < data.size() && i < data.size(); i++) {
+			DataItem d = data.get(i);
+
+			showMaxMin(gc, d, n);
+		}
 	}
 
 	private Point drawStringOnFreeSpace(GC gc, String s, int x, int y) {
@@ -248,14 +259,6 @@ public class ZoomMonitor extends Canvas {
 	public void refreshGraph() {
 		getParent().layout();
 		redraw();
-	}
-
-	public SpaceAllocator getSpaceAllocator() {
-		return spaceAllocator;
-	}
-
-	public void setSpaceAllocator(SpaceAllocator spaceAllocator) {
-		this.spaceAllocator = spaceAllocator;
 	}
 
 	public boolean isShowMax() {

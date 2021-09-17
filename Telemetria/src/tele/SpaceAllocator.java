@@ -19,20 +19,21 @@ public class SpaceAllocator {
 
 		Point spacePoint = new Point(xSpace, ySpace);
 
-		if (check(p, spacePoint)) {
-			setp.add(p);
-
-			return p;
-		}
+//		if (check(p, spacePoint)) {
+//			setp.add(p);
+//
+//			return p;
+//		}
 		Point qq = Point.copy(p);
 		while (true) {
-			qq.setY(qq.getY() - 5);
+		
 
 			if (check(qq, spacePoint)) {
 				setp.add(qq);
 
 				return qq;
 			}
+			qq.setY(qq.getY() - 5);
 		}
 	}
 
